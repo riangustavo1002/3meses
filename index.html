@@ -517,13 +517,13 @@ function fLoop(){
   if(!fRunning) return;
   fFrame++;
 
-  fBird.vy+=0.3; fBird.y+=fBird.vy;
+  fBird.vy+=0.15; fBird.y+=fBird.vy;
 
   if(fFrame%85===0){
     const top=35+Math.random()*(FH-90-35);
     fPipes.push({x:FW,top,gap:78,scored:false});
   }
-  fPipes.forEach(p=>p.x-=2.2);
+  fPipes.forEach(p=>p.x-=1.5);
   fPipes=fPipes.filter(p=>p.x>-42);
 
   fPipes.forEach(p=>{
