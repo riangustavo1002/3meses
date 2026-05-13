@@ -3,456 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3 Meses ❤️</title>
+<title>3 Meses com a Thalia ❤️</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap');
 
   :root {
     --rose: #e8527a;
     --rose-light: #f7a8be;
     --rose-dark: #c0365a;
     --cream: #fff5f7;
-    --gold: #d4a057;
     --deep: #2a1020;
     --soft: #f9e8ed;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); min-height: 100vh; overflow: hidden; }
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--cream);
-    min-height: 100vh;
-    overflow: hidden;
-    cursor: default;
-  }
-
-  /* ── PARTÍCULAS ── */
-  #particles {
-    position: fixed; inset: 0;
-    pointer-events: none; z-index: 0;
-    overflow: hidden;
-  }
-  .petal {
-    position: absolute;
-    font-size: 18px;
-    animation: fall linear infinite;
-    opacity: 0.6;
-  }
+  /* PARTÍCULAS */
+  #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .petal { position: absolute; animation: fall linear infinite; opacity: .55; }
   @keyframes fall {
-    0%   { transform: translateY(-40px) rotate(0deg); opacity: .7; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    0%   { transform: translateY(-40px) rotate(0deg);   opacity: .7; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:  0; }
   }
 
-  /* ── TELA ── */
+  /* TELAS */
   .screen {
     position: fixed; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 24px;
-    z-index: 10;
-    transition: opacity .5s, transform .5s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px; z-index: 10;
+    transition: opacity .45s ease, transform .45s ease;
   }
-  .screen.hidden { opacity: 0; pointer-events: none; transform: scale(.95); }
+  .screen.hidden { opacity: 0; pointer-events: none; transform: scale(.96); }
 
-  /* ── CARD ── */
+  /* CARD */
   .card {
-    background: white;
-    border-radius: 28px;
-    padding: 40px 36px;
+    background: white; border-radius: 28px; padding: 36px 32px;
     max-width: 480px; width: 100%;
-    box-shadow: 0 8px 48px rgba(232,82,122,.18), 0 2px 12px rgba(0,0,0,.06);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 8px 48px rgba(232,82,122,.16), 0 2px 12px rgba(0,0,0,.05);
+    text-align: center; position: relative; overflow: hidden;
   }
   .card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 5px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
     background: linear-gradient(90deg, var(--rose-light), var(--rose), var(--rose-dark));
   }
 
-  /* ── PROGRESSO ── */
-  .progress-bar {
-    width: 100%; height: 8px;
-    background: #f0d8df;
-    border-radius: 99px;
-    margin-bottom: 28px;
-    overflow: hidden;
-  }
+  /* BARRA DE PROGRESSO */
+  .progress-bar { width: 100%; height: 8px; background: #f0d8df; border-radius: 99px; margin-bottom: 24px; overflow: hidden; }
   .progress-fill {
-    height: 100%;
+    height: 100%; border-radius: 99px;
     background: linear-gradient(90deg, var(--rose-light), var(--rose));
-    border-radius: 99px;
     transition: width .6s cubic-bezier(.34,1.56,.64,1);
   }
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--deep);
-    margin-bottom: 8px;
-    line-height: 1.2;
-  }
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--rose-dark);
-    margin-bottom: 16px;
-  }
-  .subtitle {
-    color: #a06070;
-    font-size: .95rem;
-    margin-bottom: 28px;
-    line-height: 1.6;
-  }
-  .emoji-big { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+  /* TIPOGRAFIA */
+  h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--deep); margin-bottom: 8px; line-height: 1.2; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--rose-dark); margin-bottom: 14px; }
+  .subtitle { color: #a06070; font-size: .92rem; margin-bottom: 24px; line-height: 1.65; }
+  .emoji-big { font-size: 3.2rem; margin-bottom: 14px; display: block; }
 
-  /* ── BOTÃO PRINCIPAL ── */
+  /* BADGE */
+  .phase-badge {
+    display: inline-block; background: var(--soft); color: var(--rose-dark);
+    font-size: .74rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 99px; margin-bottom: 16px; border: 1.5px solid var(--rose-light);
+  }
+
+  /* BOTÃO */
   .btn {
     background: linear-gradient(135deg, var(--rose), var(--rose-dark));
-    color: white;
-    border: none;
-    border-radius: 99px;
-    padding: 14px 40px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(232,82,122,.4);
-    transition: transform .15s, box-shadow .15s;
-    letter-spacing: .5px;
+    color: white; border: none; border-radius: 99px; padding: 13px 36px;
+    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; box-shadow: 0 4px 20px rgba(232,82,122,.38);
+    transition: transform .15s, box-shadow .15s; letter-spacing: .4px;
   }
   .btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(232,82,122,.5); }
   .btn:active { transform: translateY(0); }
+  .hidden { display: none !important; }
 
-  .btn-outline {
-    background: white;
-    color: var(--rose-dark);
-    border: 2px solid var(--rose-light);
-    margin-left: 10px;
-    box-shadow: none;
-  }
-  .btn-outline:hover { background: var(--soft); box-shadow: none; }
-
-  /* ── BADGE DE FASE ── */
-  .phase-badge {
-    display: inline-block;
-    background: var(--soft);
-    color: var(--rose-dark);
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 99px;
-    margin-bottom: 18px;
-    border: 1.5px solid var(--rose-light);
-  }
-
-  /* ── FASE 1: QUIZ ── */
-  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+  /* QUIZ */
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
   .quiz-opt {
-    background: var(--soft);
-    border: 2px solid var(--rose-light);
-    border-radius: 14px;
-    padding: 14px 10px;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-size: .93rem;
-    font-weight: 600;
-    color: var(--deep);
-    transition: all .2s;
-    line-height: 1.3;
+    background: var(--soft); border: 2px solid var(--rose-light); border-radius: 14px;
+    padding: 13px 10px; cursor: pointer; font-family: 'Nunito', sans-serif;
+    font-size: .88rem; font-weight: 600; color: var(--deep); transition: all .2s; line-height: 1.3;
   }
-  .quiz-opt:hover  { border-color: var(--rose); background: #ffe8ef; transform: translateY(-2px); }
+  .quiz-opt:hover   { border-color: var(--rose); background: #ffe8ef; transform: translateY(-2px); }
   .quiz-opt.correct { border-color: #5cb85c; background: #eaffea; color: #2d6a2d; animation: pop .3s; }
   .quiz-opt.wrong   { border-color: #e74c3c; background: #fff0f0; color: #a33; animation: shake .3s; }
   @keyframes pop   { 0%,100%{transform:scale(1)} 50%{transform:scale(1.07)} }
   @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
-
-  .feedback {
-    font-size: .9rem; font-weight: 600;
-    min-height: 22px; margin: 6px 0 14px;
-    transition: opacity .3s;
-  }
+  .feedback { font-size: .88rem; font-weight: 600; min-height: 20px; margin: 4px 0 12px; }
   .feedback.ok  { color: #3a9e3a; }
   .feedback.err { color: #c0392b; }
 
-  /* ── FASE 2: LABIRINTO ── */
-  #maze-wrap {
-    position: relative;
-    margin: 16px auto;
-  }
-  #maze-canvas {
-    border-radius: 12px;
-    border: 2px solid var(--rose-light);
-    display: block;
-    touch-action: none;
-  }
-  .maze-hint { font-size: .82rem; color: #b08090; margin-top: 8px; }
+  /* LABIRINTO */
+  #maze-canvas { border-radius: 12px; border: 2px solid var(--rose-light); display: block; touch-action: none; margin: 12px auto; }
+  .maze-hint { font-size: .78rem; color: #b08090; margin-top: 6px; }
 
-  /* ── FASE 3: MEMÓRIA ── */
-  .memory-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin: 16px auto;
-    max-width: 340px;
-  }
+  /* MEMÓRIA */
+  .memory-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; margin: 12px auto; max-width: 320px; }
   .mem-card {
-    aspect-ratio: 1;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1.7rem;
+    aspect-ratio: 1; border-radius: 12px; cursor: pointer; font-size: 1.55rem;
     display: flex; align-items: center; justify-content: center;
-    border: 2px solid var(--rose-light);
-    background: var(--soft);
-    transition: transform .2s;
-    user-select: none;
-    position: relative;
-    transform-style: preserve-3d;
+    position: relative; transform-style: preserve-3d; transition: transform .4s; user-select: none;
   }
   .mem-card .front, .mem-card .back {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 10px;
-    backface-visibility: hidden;
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    border-radius: 10px; backface-visibility: hidden;
   }
-  .mem-card .front { background: linear-gradient(135deg, var(--rose-light), var(--rose)); }
-  .mem-card .back  { background: var(--soft); transform: rotateY(180deg); }
-  .mem-card { transition: transform .4s; }
+  .mem-card .front { background: linear-gradient(135deg,var(--rose-light),var(--rose)); }
+  .mem-card .back  { background: var(--soft); border: 2px solid var(--rose-light); transform: rotateY(180deg); }
   .mem-card.flipped { transform: rotateY(180deg); }
-  .mem-card.matched .back { background: #eaffea; border: 2px solid #5cb85c; }
-  #mem-status { font-size: .88rem; color: #a06070; margin-top: 8px; }
+  .mem-card.matched .back { background: #eaffea; border-color: #5cb85c; }
+  #mem-status { font-size: .84rem; color: #a06070; margin-top: 6px; }
 
-  /* ── FASE 4: DIGITAÇÃO ── */
-  #type-target {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--deep);
-    background: var(--soft);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin: 14px 0;
-    line-height: 1.8;
-    letter-spacing: .3px;
-    min-height: 60px;
+  /* FLAPPY */
+  #flappy-canvas {
+    border-radius: 16px; border: 2px solid var(--rose-light); display: block; margin: 10px auto;
+    cursor: pointer; touch-action: none; box-shadow: 0 4px 20px rgba(232,82,122,.12);
   }
-  #type-target .done  { color: var(--rose-dark); font-weight: 700; }
-  #type-target .wrong-char { color: #e74c3c; background: #ffe8e8; border-radius: 3px; }
-  #type-input {
-    width: 100%;
-    border: 2px solid var(--rose-light);
-    border-radius: 12px;
-    padding: 12px 16px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    outline: none;
-    color: var(--deep);
-    transition: border .2s;
-    background: white;
-  }
-  #type-input:focus { border-color: var(--rose); }
-  #type-prog { font-size: .82rem; color: #b08090; margin-top: 6px; }
+  #flappy-score { font-size: .92rem; font-weight: 700; color: var(--rose-dark); margin-top: 4px; }
+  #flappy-msg { font-size: .78rem; color: #b08090; margin-top: 4px; line-height: 1.5; }
 
-  /* ── TELA FINAL ── */
-  #final .card {
-    background: linear-gradient(160deg, #fff0f4 0%, #fff8fa 100%);
-  }
-  .heart-burst {
-    font-size: 4rem;
-    animation: heartbeat 1.2s ease-in-out infinite;
-    display: block;
-    margin-bottom: 12px;
-  }
-  @keyframes heartbeat {
-    0%,100%{transform:scale(1)} 14%{transform:scale(1.18)} 28%{transform:scale(1)} 42%{transform:scale(1.1)} 70%{transform:scale(1)}
-  }
-  .final-msg {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.55rem;
-    color: var(--deep);
-    line-height: 1.5;
-    margin: 12px 0 20px;
-  }
-  .final-sub {
-    font-size: 1rem;
-    color: #8a4060;
-    line-height: 1.7;
-    margin-bottom: 28px;
-  }
-  .counter-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 8px 24px;
-    border-radius: 99px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 16px rgba(232,82,122,.35);
-  }
-  .signature {
-    margin-top: 20px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--rose-dark);
-    font-size: 1.05rem;
-  }
-
-  /* ── MODAL ── */
+  /* MODAL */
   #overlay {
-    position: fixed; inset: 0;
-    background: rgba(42,16,32,.45);
-    z-index: 50;
+    position: fixed; inset: 0; background: rgba(42,16,32,.45); z-index: 50;
     display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity .3s;
+    opacity: 0; pointer-events: none; transition: opacity .3s;
   }
   #overlay.show { opacity: 1; pointer-events: all; }
   #modal {
-    background: white;
-    border-radius: 24px;
-    padding: 32px 28px;
-    max-width: 340px; width: 90%;
-    text-align: center;
-    box-shadow: 0 16px 64px rgba(0,0,0,.18);
-    transform: scale(.9);
-    transition: transform .3s;
+    background: white; border-radius: 24px; padding: 30px 26px;
+    max-width: 320px; width: 90%; text-align: center;
+    box-shadow: 0 16px 64px rgba(0,0,0,.18); transform: scale(.9); transition: transform .3s;
   }
   #overlay.show #modal { transform: scale(1); }
-  #modal h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--deep); margin-bottom:10px; }
-  #modal p  { color:#906070; font-size:.9rem; line-height:1.6; margin-bottom:20px; }
+  #modal h3 { font-family: 'Playfair Display',serif; font-size: 1.35rem; color: var(--deep); margin-bottom: 9px; }
+  #modal p  { color: #906070; font-size: .88rem; line-height: 1.6; margin-bottom: 18px; }
+
+  /* TELA FINAL */
+  #final .card { background: linear-gradient(160deg,#fff0f4 0%,#fff8fa 100%); }
+  .heart-burst { font-size: 4rem; animation: heartbeat 1.2s ease-in-out infinite; display: block; margin-bottom: 10px; }
+  @keyframes heartbeat { 0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.1)} }
+  .final-name { font-family: 'Playfair Display',serif; font-style: italic; font-size: 1.75rem; color: var(--rose-dark); margin-bottom: 8px; }
+  .counter-badge {
+    display: inline-block; background: linear-gradient(135deg,var(--rose),var(--rose-dark));
+    color: white; font-weight: 700; font-size: 1rem; padding: 7px 22px;
+    border-radius: 99px; margin-bottom: 16px; box-shadow: 0 4px 16px rgba(232,82,122,.32);
+  }
+  .final-msg { font-family: 'Playfair Display',serif; font-size: 1.2rem; color: var(--deep); line-height: 1.6; margin: 10px 0 14px; }
+  .final-sub { font-size: .9rem; color: #8a4060; line-height: 1.8; margin-bottom: 22px; }
+  .signature { margin-top: 16px; font-family: 'Playfair Display',serif; font-style: italic; color: var(--rose-dark); font-size: 1rem; }
 </style>
 </head>
 <body>
 
-<!-- Partículas -->
-<div id="particles"></div>
+<div id="particles" aria-hidden="true"></div>
 
-<!-- Modal de parabéns de fase -->
-<div id="overlay">
+<!-- MODAL -->
+<div id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div id="modal">
-    <span style="font-size:2.5rem">🌸</span>
+    <span style="font-size:2.4rem" aria-hidden="true">🌸</span>
     <h3 id="modal-title">Fase concluída!</h3>
-    <p id="modal-body">Você arrasou nessa fase!</p>
+    <p id="modal-body">Você arrasou!</p>
     <button class="btn" onclick="closeModal()">Próxima fase →</button>
   </div>
 </div>
 
+<main>
+
 <!-- ══ TELA 0: INTRO ══ -->
-<div class="screen" id="s0">
+<section class="screen" id="s0" aria-label="Apresentação">
   <div class="card">
-    <span class="emoji-big">💌</span>
-    <h1>Surpresa especial</h1>
-    <p class="subtitle" style="margin-top:10px">
-      Um joguinho criado com muito carinho para você.<br>
-      Complete todas as fases para descobrir a mensagem secreta 💕
+    <span class="emoji-big" aria-hidden="true">💌</span>
+    <h1>Para a Thalia</h1>
+    <p class="subtitle">
+      Criei esse joguinho especial pra você, meu amor.<br>
+      Complete todas as fases para descobrir a mensagem guardada no meu coração 💕
     </p>
     <button class="btn" onclick="goTo('s1')">Começar ✨</button>
   </div>
-</div>
+</section>
 
 <!-- ══ TELA 1: QUIZ ══ -->
-<div class="screen hidden" id="s1">
+<section class="screen hidden" id="s1" aria-label="Fase 1 — Quiz">
   <div class="card">
-    <div class="progress-bar"><div class="progress-fill" id="pb1" style="width:25%"></div></div>
+    <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-fill" style="width:25%"></div>
+    </div>
     <div class="phase-badge">Fase 1 de 4 · Quiz</div>
     <h2>Você me conhece bem? 🤔</h2>
     <p class="subtitle" id="q-text"></p>
-    <div class="quiz-options" id="q-opts"></div>
-    <div class="feedback" id="q-feedback"></div>
+    <div class="quiz-options" id="q-opts" role="group" aria-label="Opções de resposta"></div>
+    <p class="feedback" id="q-feedback" aria-live="polite"></p>
     <button class="btn hidden" id="q-next" onclick="nextQuestion()">Próxima pergunta →</button>
   </div>
-</div>
+</section>
 
 <!-- ══ TELA 2: LABIRINTO ══ -->
-<div class="screen hidden" id="s2">
+<section class="screen hidden" id="s2" aria-label="Fase 2 — Labirinto">
   <div class="card">
-    <div class="progress-bar"><div class="progress-fill" id="pb2" style="width:50%"></div></div>
+    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-fill" style="width:50%"></div>
+    </div>
     <div class="phase-badge">Fase 2 de 4 · Labirinto</div>
     <h2>Encontre o coração! 💘</h2>
-    <p class="subtitle">Use as setas do teclado ou deslize na tela para guiar o ❤️ até o 🏆</p>
-    <div id="maze-wrap">
-      <canvas id="maze-canvas"></canvas>
-    </div>
-    <p class="maze-hint">💡 Dica: encontre o caminho sem bater nas paredes!</p>
+    <p class="subtitle">Use as setas do teclado ou deslize com o dedo para guiar o ❤️ até a 🌸</p>
+    <canvas id="maze-canvas" aria-label="Labirinto interativo"></canvas>
+    <p class="maze-hint">💡 Encontre o caminho sem bater nas paredes!</p>
   </div>
-</div>
+</section>
 
 <!-- ══ TELA 3: MEMÓRIA ══ -->
-<div class="screen hidden" id="s3">
+<section class="screen hidden" id="s3" aria-label="Fase 3 — Jogo da Memória">
   <div class="card">
-    <div class="progress-bar"><div class="progress-fill" id="pb3" style="width:75%"></div></div>
+    <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-fill" style="width:75%"></div>
+    </div>
     <div class="phase-badge">Fase 3 de 4 · Memória</div>
     <h2>Jogo da Memória 🧠</h2>
     <p class="subtitle">Encontre todos os pares de cartas!</p>
-    <div class="memory-grid" id="mem-grid"></div>
-    <p id="mem-status">Tentativas: 0 | Pares: 0/6</p>
+    <div class="memory-grid" id="mem-grid" role="list"></div>
+    <p id="mem-status" aria-live="polite">Tentativas: 0 | Pares: 0/6</p>
   </div>
-</div>
+</section>
 
-<!-- ══ TELA 4: DIGITAÇÃO ══ -->
-<div class="screen hidden" id="s4">
+<!-- ══ TELA 4: FLAPPY ══ -->
+<section class="screen hidden" id="s4" aria-label="Fase 4 — Voe até ela">
   <div class="card">
-    <div class="progress-bar"><div class="progress-fill" id="pb4" style="width:90%"></div></div>
-    <div class="phase-badge">Fase 4 de 4 · Completar</div>
-    <h2>Complete a frase ✍️</h2>
-    <p class="subtitle">Digite exatamente o texto abaixo para liberar a mensagem especial!</p>
-    <div id="type-target"></div>
-    <input id="type-input" type="text" placeholder="Comece a digitar aqui..." autocomplete="off" oninput="checkTyping()">
-    <p id="type-prog">0%</p>
+    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-fill" style="width:90%"></div>
+    </div>
+    <div class="phase-badge">Fase 4 de 4 · Voe até ela!</div>
+    <h2>Chegue até a Thalia! 💕</h2>
+    <canvas id="flappy-canvas" aria-label="Jogo de voar até a Thalia"></canvas>
+    <p id="flappy-score">Pontos: 0 / 5</p>
+    <p id="flappy-msg">Toque ou pressione Espaço para voar!</p>
   </div>
-</div>
+</section>
 
 <!-- ══ TELA FINAL ══ -->
-<div class="screen hidden" id="final">
-  <div class="card" id="final-card">
-    <span class="heart-burst">❤️</span>
+<section class="screen hidden" id="final" aria-label="Mensagem final">
+  <div class="card">
+    <span class="heart-burst" aria-hidden="true">❤️</span>
+    <p class="final-name">Thalia Ayumi</p>
     <div class="counter-badge">3 meses juntos 🌹</div>
     <p class="final-msg">
-      Você conseguiu! E assim como venceu esse joguinho,<br>
-      você ganhou o meu coração.
+      Você passou por tudo e chegou até aqui,<br>
+      assim como chegou ao meu coração.
     </p>
     <p class="final-sub">
-      Esses três meses com você foram os mais especiais da minha vida.
-      Cada momento, cada risada, cada abraço… tudo ficou guardado
-      aqui dentro do meu peito como um tesouro que eu nunca quero perder.
-      <br><br>
-      Obrigado por existir, por me escolher e por fazer cada dia valer mais.
-      Que venham muitos outros meses — e anos — assim, ao seu lado. 💕
+      Esses três meses com você, Thalia Ayumi Kawomoto Kageyama,
+      foram os mais bonitos da minha vida. Cada riso, cada olhar,
+      cada momento ao seu lado virou um pedacinho de mim que eu
+      nunca quero perder.<br><br>
+      Você é a melhor namorada do mundo — e eu fico mais feliz a cada
+      dia sabendo que você escolheu estar comigo. 💕<br><br>
+      Espero de verdade que você tenha gostado desse joguinho
+      e que ele tenha chegado no seu coração tanto quanto você chegou no meu. 🌼
     </p>
     <button class="btn" onclick="celebrate()">Eu te amo! 💖</button>
     <p class="signature">— Sempre seu(a) ✨</p>
   </div>
-</div>
+</section>
+
+</main>
 
 <script>
-/* ── PARTÍCULAS ── */
-const PETALS = ['🌸','💕','✨','💗','🌹','💖','🌷','💝'];
-const pc = document.getElementById('particles');
-for(let i=0;i<22;i++){
+/* ─── PARTÍCULAS ─── */
+['🌸','💕','✨','💗','🌼','💖','🌷','💝','🌺'].forEach((em,i)=>{
   const p=document.createElement('span');
-  p.className='petal';
-  p.textContent=PETALS[Math.floor(Math.random()*PETALS.length)];
-  p.style.cssText=`left:${Math.random()*100}%;font-size:${12+Math.random()*16}px;
-    animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*8}s;`;
-  pc.appendChild(p);
-}
+  p.className='petal'; p.setAttribute('aria-hidden','true'); p.textContent=em;
+  p.style.cssText=`left:${(i*11+Math.random()*8)%100}%;font-size:${13+Math.random()*14}px;
+    animation-duration:${7+Math.random()*8}s;animation-delay:${Math.random()*9}s;`;
+  document.getElementById('particles').appendChild(p);
+});
 
-/* ── NAVEGAÇÃO ── */
+/* ─── NAVEGAÇÃO ─── */
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
   if(id==='s1') startQuiz();
   if(id==='s2') initMaze();
   if(id==='s3') initMemory();
-  if(id==='s4') initTyping();
+  if(id==='s4') initFlappy();
 }
 
-/* ── MODAL ── */
+/* ─── MODAL ─── */
 let modalCb=null;
 function showModal(title,body,cb){
   document.getElementById('modal-title').textContent=title;
@@ -462,48 +300,68 @@ function showModal(title,body,cb){
 }
 function closeModal(){
   document.getElementById('overlay').classList.remove('show');
-  if(modalCb) modalCb();
-  modalCb=null;
+  if(modalCb){ modalCb(); modalCb=null; }
 }
 
-/* ══ FASE 1: QUIZ ══ */
+/* ═══════════════════════════════════
+   FASE 1 — QUIZ
+═══════════════════════════════════ */
 const questions=[
-  { q:'Qual é a sua cor favorita?', opts:['Azul','Rosa','Verde','Amarelo'], ans:1 },
-  { q:'Em que mês nos conhecemos?', opts:['Janeiro','Fevereiro','Março','Outro mês'], ans:3 },
-  { q:'O que você mais gosta em nós dois?', opts:['As risadas','Os abraços','A cumplicidade','Tudo isso!'], ans:3 },
-  { q:'Qual emoji representa nosso amor?', opts:['🔥','❤️','💫','💕'], ans:1 },
+  {
+    q:'Qual é a flor favorita da Thalia?',
+    opts:['Rosa 🌹','Gerbera 🌼','Girassol 🌻','Margarida 🌸'],
+    ans:1,
+    ok:'Claro, a gerbera! Linda como você 🌼',
+    err:'Era a gerbera! Tão fofa quanto você 🌼'
+  },
+  {
+    q:'Onde foi o nosso primeiro encontro?',
+    opts:['Café Plenitude ☕','Eugênia 🍽️','Corrida no Utinga 🏃','Old House 🎵'],
+    ans:1,
+    ok:'Eugênia! Que noite especial foi aquela 🥰',
+    err:'Foi na Eugênia — que começo lindo o nosso! 🥰'
+  },
+  {
+    q:'O que melhor define esses 3 meses?',
+    opts:['Aventura 🗺️','Cumplicidade 🤝','Sorrisos 😄','Tudo isso e mais! 💕'],
+    ans:3,
+    ok:'Tudo isso mesmo, e ainda muito mais! 💕',
+    err:'Era tudo isso e mais! Porque com você é sempre demais 💕'
+  },
+  {
+    q:'O que a Thalia significa pra mim?',
+    opts:['Muito 💖','O mundo todo 🌍','Tudo 🌟','As três anteriores ❤️'],
+    ans:3,
+    ok:'Todas! Porque você é tudo isso pra mim ❤️',
+    err:'A resposta era: todas as anteriores — você é tudo! ❤️'
+  },
 ];
 let qIdx=0, qRight=0;
 function startQuiz(){ qIdx=0; qRight=0; renderQ(); }
 function renderQ(){
   const q=questions[qIdx];
   document.getElementById('q-text').textContent=q.q;
-  document.getElementById('q-feedback').textContent='';
-  document.getElementById('q-feedback').className='feedback';
-  const next=document.getElementById('q-next');
-  next.classList.add('hidden');
-  const grid=document.getElementById('q-opts');
-  grid.innerHTML='';
+  const fb=document.getElementById('q-feedback');
+  fb.textContent=''; fb.className='feedback';
+  document.getElementById('q-next').classList.add('hidden');
+  const grid=document.getElementById('q-opts'); grid.innerHTML='';
   q.opts.forEach((o,i)=>{
     const b=document.createElement('button');
     b.className='quiz-opt'; b.textContent=o;
-    b.onclick=()=>answerQ(i);
-    grid.appendChild(b);
+    b.onclick=()=>answerQ(i); grid.appendChild(b);
   });
 }
 function answerQ(i){
   const q=questions[qIdx];
   const btns=document.querySelectorAll('.quiz-opt');
   const fb=document.getElementById('q-feedback');
-  btns.forEach(b=>b.onclick=null);
+  btns.forEach(b=>{ b.onclick=null; b.setAttribute('disabled',''); });
   if(i===q.ans){
     btns[i].classList.add('correct');
-    fb.textContent='✅ Que fofa, acertou!'; fb.className='feedback ok';
-    qRight++;
+    fb.textContent='✅ '+q.ok; fb.className='feedback ok'; qRight++;
   } else {
-    btns[i].classList.add('wrong');
-    btns[q.ans].classList.add('correct');
-    fb.textContent='❌ Quase! A resposta era outra…'; fb.className='feedback err';
+    btns[i].classList.add('wrong'); btns[q.ans].classList.add('correct');
+    fb.textContent='❌ '+q.err; fb.className='feedback err';
   }
   document.getElementById('q-next').classList.remove('hidden');
 }
@@ -511,211 +369,278 @@ function nextQuestion(){
   qIdx++;
   if(qIdx<questions.length){ renderQ(); return; }
   showModal('Quiz concluído! 🎉',
-    `Você acertou ${qRight} de ${questions.length} perguntas. Incrível! 💕`,
+    `Você acertou ${qRight} de ${questions.length}. Incrível, Thalia! 💕`,
     ()=>goTo('s2'));
 }
 
-/* ══ FASE 2: LABIRINTO ══ */
-const CELL=32, COLS=11, ROWS=11;
-let maze,px,py,mazeWon=false;
-let touchStart={x:0,y:0};
-
+/* ═══════════════════════════════════
+   FASE 2 — LABIRINTO
+═══════════════════════════════════ */
+const COLS=11,ROWS=11;
+let maze,px,py,mazeWon=false,touchStart={x:0,y:0};
 function initMaze(){
-  mazeWon=false;
-  const size=Math.min(320, window.innerWidth-80);
+  mazeWon=false; px=0; py=0;
+  const size=Math.min(296,window.innerWidth-80);
   const c=document.getElementById('maze-canvas');
   c.width=c.height=size;
-  const cs=size/COLS;
-  maze=generateMaze(COLS,ROWS);
-  px=0; py=0;
-  drawMaze(c,cs);
+  maze=buildMaze(COLS,ROWS);
+  drawMaze(c,size/COLS);
   document.onkeydown=mazeKey;
-  c.ontouchstart=e=>{
-    touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};
-    e.preventDefault();
-  };
+  c.ontouchstart=e=>{ touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}; e.preventDefault(); };
   c.ontouchend=e=>{
-    const dx=e.changedTouches[0].clientX-touchStart.x;
-    const dy=e.changedTouches[0].clientY-touchStart.y;
-    if(Math.abs(dx)>Math.abs(dy)){ mazeMove(dx>0?'right':'left'); }
-    else { mazeMove(dy>0?'down':'up'); }
+    const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;
+    Math.abs(dx)>Math.abs(dy)?mazeMove(dx>0?'r':'l'):mazeMove(dy>0?'d':'u');
   };
 }
-
-function generateMaze(w,h){
-  const g=[];
-  for(let y=0;y<h;y++){ g[y]=[]; for(let x=0;x<w;x++) g[y][x]={r:true,b:true}; }
-  const vis=[];
-  for(let y=0;y<h;y++){vis[y]=[]; for(let x=0;x<w;x++) vis[y][x]=false;}
-  function carve(x,y){
-    vis[y][x]=true;
-    const dirs=[[0,-1,'top'],[1,0,'right'],[0,1,'bottom'],[-1,0,'left']].sort(()=>Math.random()-.5);
-    for(const [dx,dy,d] of dirs){
+function buildMaze(w,h){
+  const g=Array.from({length:h},()=>Array.from({length:w},()=>({r:true,b:true})));
+  const v=Array.from({length:h},()=>Array(w).fill(false));
+  (function carve(x,y){
+    v[y][x]=true;
+    [[0,-1,'u'],[1,0,'r'],[0,1,'d'],[-1,0,'l']].sort(()=>Math.random()-.5).forEach(([dx,dy,d])=>{
       const nx=x+dx,ny=y+dy;
-      if(nx>=0&&ny>=0&&nx<w&&ny<h&&!vis[ny][nx]){
-        if(d==='right') g[y][x].r=false;
-        else if(d==='bottom') g[y][x].b=false;
-        else if(d==='left') g[y][nx].r=false;
-        else if(d==='top') g[ny][x].b=false;
+      if(nx>=0&&ny>=0&&nx<w&&ny<h&&!v[ny][nx]){
+        if(d==='r')g[y][x].r=false;
+        else if(d==='d')g[y][x].b=false;
+        else if(d==='l')g[y][nx].r=false;
+        else g[ny][x].b=false;
         carve(nx,ny);
       }
-    }
-  }
-  carve(0,0);
+    });
+  })(0,0);
   return g;
 }
-
 function drawMaze(c,cs){
   const ctx=c.getContext('2d');
-  ctx.clearRect(0,0,c.width,c.height);
-  ctx.strokeStyle='#e8527a'; ctx.lineWidth=2.5;
-  ctx.fillStyle='#fff5f7';
-  ctx.fillRect(0,0,c.width,c.height);
-  for(let y=0;y<ROWS;y++){
-    for(let x=0;x<COLS;x++){
-      const cx=x*cs,cy=y*cs;
-      if(x===0){ ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+cs);ctx.stroke(); }
-      if(y===0){ ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+cs,cy);ctx.stroke(); }
-      if(maze[y][x].r&&!(x===COLS-1&&y===ROWS-1)){
-        ctx.beginPath();ctx.moveTo(cx+cs,cy);ctx.lineTo(cx+cs,cy+cs);ctx.stroke();
-      }
-      if(maze[y][x].b&&!(x===COLS-1&&y===ROWS-1)){
-        ctx.beginPath();ctx.moveTo(cx,cy+cs);ctx.lineTo(cx+cs,cy+cs);ctx.stroke();
-      }
-    }
+  ctx.fillStyle='#fff5f7'; ctx.fillRect(0,0,c.width,c.height);
+  ctx.strokeStyle='#e8527a'; ctx.lineWidth=2;
+  for(let y=0;y<ROWS;y++) for(let x=0;x<COLS;x++){
+    const cx=x*cs,cy=y*cs;
+    if(x===0){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+cs);ctx.stroke();}
+    if(y===0){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+cs,cy);ctx.stroke();}
+    if(maze[y][x].r&&!(x===COLS-1&&y===ROWS-1)){ctx.beginPath();ctx.moveTo(cx+cs,cy);ctx.lineTo(cx+cs,cy+cs);ctx.stroke();}
+    if(maze[y][x].b&&!(x===COLS-1&&y===ROWS-1)){ctx.beginPath();ctx.moveTo(cx,cy+cs);ctx.lineTo(cx+cs,cy+cs);ctx.stroke();}
   }
-  // Goal
-  ctx.font=`${cs*.7}px serif`;
-  ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText('🏆',(COLS-.5)*cs,(ROWS-.5)*cs);
-  // Player
+  ctx.font=`${cs*.7}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('🌸',(COLS-.5)*cs,(ROWS-.5)*cs);
   ctx.fillText('❤️',(px+.5)*cs,(py+.5)*cs);
 }
-
 function mazeKey(e){
-  const map={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'};
-  if(map[e.key]){e.preventDefault();mazeMove(map[e.key]);}
+  const m={ArrowUp:'u',ArrowDown:'d',ArrowLeft:'l',ArrowRight:'r'};
+  if(m[e.key]){e.preventDefault();mazeMove(m[e.key]);}
 }
-
 function mazeMove(dir){
   if(mazeWon) return;
-  const c=document.getElementById('maze-canvas');
-  const cs=c.width/COLS;
+  const c=document.getElementById('maze-canvas'),cs=c.width/COLS;
   let nx=px,ny=py;
-  if(dir==='up'){ny--;}
-  else if(dir==='down'){ny++;}
-  else if(dir==='left'){nx--;}
-  else if(dir==='right'){nx++;}
+  if(dir==='u')ny--; else if(dir==='d')ny++; else if(dir==='l')nx--; else nx++;
   if(nx<0||ny<0||nx>=COLS||ny>=ROWS) return;
-  // wall check
-  if(dir==='right'&&maze[py][px].r) return;
-  if(dir==='down' &&maze[py][px].b) return;
-  if(dir==='left' &&maze[py][nx].r) return;
-  if(dir==='up'   &&maze[ny][px].b) return;
-  px=nx;py=ny;
-  drawMaze(c,cs);
+  if(dir==='r'&&maze[py][px].r) return;
+  if(dir==='d'&&maze[py][px].b) return;
+  if(dir==='l'&&maze[py][nx].r) return;
+  if(dir==='u'&&maze[ny][px].b) return;
+  px=nx; py=ny; drawMaze(c,cs);
   if(px===COLS-1&&py===ROWS-1){
-    mazeWon=true;
-    document.onkeydown=null;
+    mazeWon=true; document.onkeydown=null;
     setTimeout(()=>showModal('Labirinto concluído! 🗺️',
-      'Você encontrou o coração! Assim como encontrou o meu 💕',
+      'Você encontrou a flor! Assim como encontrou o meu coração 🌸',
       ()=>goTo('s3')),400);
   }
 }
 
-/* ══ FASE 3: MEMÓRIA ══ */
-const MEM_EMOJIS=['❤️','🌹','💌','💕','✨','🌸'];
-let memCards=[],memFlipped=[],memMatched=0,memTries=0,memLock=false;
+/* ═══════════════════════════════════
+   FASE 3 — MEMÓRIA
+═══════════════════════════════════ */
+const MEM_EMOJIS=['❤️','🌼','💌','💕','✨','🌸'];
+let memFlipped=[],memMatched=0,memTries=0,memLock=false;
 function initMemory(){
-  memMatched=0;memTries=0;memFlipped=[];memLock=false;
-  const grid=document.getElementById('mem-grid');
-  grid.innerHTML='';
-  const pairs=[...MEM_EMOJIS,...MEM_EMOJIS].sort(()=>Math.random()-.5);
-  memCards=pairs.map((em,i)=>{
+  memMatched=0; memTries=0; memFlipped=[]; memLock=false;
+  const grid=document.getElementById('mem-grid'); grid.innerHTML='';
+  [...MEM_EMOJIS,...MEM_EMOJIS].sort(()=>Math.random()-.5).forEach(em=>{
     const d=document.createElement('div');
-    d.className='mem-card';
-    d.innerHTML=`<div class="front">❓</div><div class="back">${em}</div>`;
-    d.dataset.val=em; d.dataset.idx=i;
-    d.onclick=()=>flipCard(d);
+    d.className='mem-card'; d.setAttribute('role','listitem');
+    d.innerHTML=`<div class="front">💝</div><div class="back">${em}</div>`;
+    d.dataset.val=em; d.onclick=()=>flipCard(d);
     grid.appendChild(d);
-    return d;
   });
-  updateMemStatus();
+  updMem();
 }
 function flipCard(card){
   if(memLock||card.classList.contains('flipped')||card.classList.contains('matched')) return;
-  card.classList.add('flipped');
-  memFlipped.push(card);
+  card.classList.add('flipped'); memFlipped.push(card);
   if(memFlipped.length===2){
-    memTries++;
-    memLock=true;
+    memTries++; memLock=true;
     const [a,b]=memFlipped;
     if(a.dataset.val===b.dataset.val){
       a.classList.add('matched'); b.classList.add('matched');
-      memMatched++;
-      memFlipped=[];memLock=false;
-      updateMemStatus();
-      if(memMatched===MEM_EMOJIS.length){
+      memMatched++; memFlipped=[]; memLock=false; updMem();
+      if(memMatched===MEM_EMOJIS.length)
         setTimeout(()=>showModal('Memória incrível! 🧠',
-          `Você completou em ${memTries} tentativas! Só podia ser você 💕`,
+          `Completou em ${memTries} tentativas! Só você mesmo, Thalia 💕`,
           ()=>goTo('s4')),500);
-      }
     } else {
-      setTimeout(()=>{
-        a.classList.remove('flipped'); b.classList.remove('flipped');
-        memFlipped=[];memLock=false;
-        updateMemStatus();
-      },900);
+      setTimeout(()=>{a.classList.remove('flipped');b.classList.remove('flipped');memFlipped=[];memLock=false;updMem();},900);
     }
   }
 }
-function updateMemStatus(){
-  document.getElementById('mem-status').textContent=
-    `Tentativas: ${memTries} | Pares: ${memMatched}/${MEM_EMOJIS.length}`;
+function updMem(){
+  document.getElementById('mem-status').textContent=`Tentativas: ${memTries} | Pares: ${memMatched}/${MEM_EMOJIS.length}`;
 }
 
-/* ══ FASE 4: DIGITAÇÃO ══ */
-const TYPE_PHRASE='Três meses com você e eu só quero mais 💕';
-function initTyping(){
-  document.getElementById('type-input').value='';
-  renderTyping('');
+/* ═══════════════════════════════════
+   FASE 4 — FLAPPY (EU VOANDO ATÉ ELA)
+═══════════════════════════════════ */
+const FW=320,FH=220,GOAL=5;
+let fBird,fPipes,fScore,fFrame,fAF,fRunning=false,fStarted=false,fOver=false;
+
+function initFlappy(){
+  fStarted=false; fOver=false; fRunning=false;
+  cancelAnimationFrame(fAF);
+  fBird={x:55,y:FH/2,vy:0};
+  fPipes=[]; fScore=0; fFrame=0;
+  const c=document.getElementById('flappy-canvas');
+  c.width=FW; c.height=FH;
+  document.getElementById('flappy-score').textContent=`Pontos: 0 / ${GOAL}`;
+  document.getElementById('flappy-msg').textContent='Toque ou pressione Espaço para voar!';
+  drawFlappy();
+  c.onclick=fTap; c.ontouchstart=e=>{e.preventDefault();fTap();};
+  document.onkeydown=e=>{if(e.code==='Space'){e.preventDefault();fTap();}};
 }
-function checkTyping(){
-  const val=document.getElementById('type-input').value;
-  renderTyping(val);
-  if(val===TYPE_PHRASE){
-    document.getElementById('type-input').disabled=true;
-    setTimeout(()=>goTo('final'),600);
+
+function fTap(){
+  if(fOver){ initFlappy(); return; }
+  if(!fStarted){ fStarted=true; fRunning=true; fLoop(); }
+  fBird.vy=-5.6;
+}
+
+function fLoop(){
+  if(!fRunning) return;
+  fFrame++;
+
+  fBird.vy+=0.3; fBird.y+=fBird.vy;
+
+  if(fFrame%85===0){
+    const top=35+Math.random()*(FH-90-35);
+    fPipes.push({x:FW,top,gap:78,scored:false});
   }
-}
-function renderTyping(typed){
-  const target=document.getElementById('type-target');
-  let html='';
-  for(let i=0;i<TYPE_PHRASE.length;i++){
-    if(i<typed.length){
-      if(typed[i]===TYPE_PHRASE[i]) html+=`<span class="done">${esc(TYPE_PHRASE[i])}</span>`;
-      else html+=`<span class="wrong-char">${esc(TYPE_PHRASE[i])}</span>`;
-    } else {
-      html+=`<span style="color:#ccc">${esc(TYPE_PHRASE[i])}</span>`;
+  fPipes.forEach(p=>p.x-=2.2);
+  fPipes=fPipes.filter(p=>p.x>-42);
+
+  fPipes.forEach(p=>{
+    if(!p.scored&&p.x+40<fBird.x){ p.scored=true; fScore++;
+      document.getElementById('flappy-score').textContent=`Pontos: ${fScore} / ${GOAL}`;
+    }
+  });
+
+  if(fBird.y-14<0||fBird.y+14>FH){ endFlappy(false); return; }
+
+  for(const p of fPipes){
+    if(fBird.x+12>p.x&&fBird.x-12<p.x+40){
+      if(fBird.y-12<p.top||fBird.y+12>p.top+p.gap){ endFlappy(false); return; }
     }
   }
-  target.innerHTML=html;
-  const pct=Math.round(Math.min(typed.length,TYPE_PHRASE.length)/TYPE_PHRASE.length*100);
-  document.getElementById('type-prog').textContent=`${pct}% completo`;
-}
-function esc(c){ return c==='<'?'&lt;':c==='>'?'&gt;':c==='&'?'&amp;':c===' '?'&nbsp;':c; }
 
-/* ══ TELA FINAL ══ */
+  if(fScore>=GOAL){ endFlappy(true); return; }
+
+  drawFlappy();
+  fAF=requestAnimationFrame(fLoop);
+}
+
+function drawFlappy(){
+  const c=document.getElementById('flappy-canvas'),ctx=c.getContext('2d');
+
+  // Céu
+  const sky=ctx.createLinearGradient(0,0,0,FH);
+  sky.addColorStop(0,'#ffe0ea'); sky.addColorStop(1,'#fff5f7');
+  ctx.fillStyle=sky; ctx.fillRect(0,0,FW,FH);
+
+  // Nuvens
+  ctx.fillStyle='rgba(255,255,255,.75)';
+  [[55,28,30,14],[130,18,24,11],[220,32,28,13],[290,22,20,10]].forEach(([x,y,rx,ry])=>{
+    const ox=(fFrame*.25)%FW;
+    ctx.beginPath(); ctx.ellipse((x+ox)%FW,y,rx,ry,0,0,Math.PI*2); ctx.fill();
+  });
+
+  // Chão
+  ctx.fillStyle='#f7c8d4'; ctx.fillRect(0,FH-7,FW,7);
+  ctx.fillStyle='#e8a0b4'; ctx.fillRect(0,FH-7,FW,2);
+
+  // Barra de progresso
+  if(fStarted&&!fOver){
+    const prog=Math.min(fScore/GOAL,1);
+    ctx.fillStyle='rgba(232,82,122,.15)'; ctx.beginPath(); ctx.roundRect(8,8,FW-16,10,5); ctx.fill();
+    ctx.fillStyle='#e8527a'; ctx.beginPath(); ctx.roundRect(8,8,(FW-16)*prog,10,5); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.font='bold 7.5px Nunito,sans-serif'; ctx.textAlign='center';
+    ctx.fillText(`${Math.round(prog*100)}% até a Thalia 💕`,FW/2,16.5);
+  }
+
+  // Pipes (rosas)
+  fPipes.forEach(p=>{
+    const g=ctx.createLinearGradient(p.x,0,p.x+40,0);
+    g.addColorStop(0,'#e8527a'); g.addColorStop(1,'#f7a8be');
+    ctx.fillStyle=g;
+    if(p.top>0){ ctx.beginPath(); ctx.roundRect(p.x,0,40,p.top,[0,0,6,6]); ctx.fill(); }
+    ctx.fillStyle='#c0365a'; ctx.fillRect(p.x-4,p.top-12,48,12);
+    const bot=p.top+p.gap;
+    ctx.fillStyle=g;
+    ctx.beginPath(); ctx.roundRect(p.x,bot,40,FH-bot,[6,6,0,0]); ctx.fill();
+    ctx.fillStyle='#c0365a'; ctx.fillRect(p.x-4,bot,48,12);
+  });
+
+  // Destino: Thalia
+  ctx.font='22px serif'; ctx.textAlign='right'; ctx.textBaseline='middle';
+  ctx.fillText('🌸',FW-6,FH/2);
+  ctx.font='bold 8px Nunito,sans-serif'; ctx.fillStyle='#c0365a'; ctx.textAlign='right';
+  ctx.textBaseline='alphabetic';
+  ctx.fillText('Thalia',FW-4,FH/2+18);
+
+  // Jogador: eu ❤️
+  ctx.save();
+  ctx.translate(fBird.x,fBird.y);
+  if(fStarted) ctx.rotate(Math.min(Math.max(fBird.vy*.05,-.4),.55));
+  ctx.font='24px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('🧡',0,0);
+  ctx.restore();
+}
+
+function endFlappy(win){
+  fRunning=false; cancelAnimationFrame(fAF); document.onkeydown=null;
+  const c=document.getElementById('flappy-canvas'),ctx=c.getContext('2d');
+  drawFlappy();
+  ctx.fillStyle='rgba(255,240,246,.84)'; ctx.fillRect(0,0,FW,FH);
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  if(win){
+    ctx.font='bold 15px Playfair Display,serif'; ctx.fillStyle='#c0365a';
+    ctx.fillText('Você chegou até ela! 💕',FW/2,FH/2-14);
+    ctx.font='11px Nunito,sans-serif'; ctx.fillStyle='#a06070';
+    ctx.fillText('Assim como chegou ao meu coração',FW/2,FH/2+10);
+    setTimeout(()=>showModal('Chegou! 💕',
+      'Assim como sempre chega até mim, de todas as formas! 🌸',
+      ()=>goTo('final')),800);
+  } else {
+    ctx.font='bold 15px Playfair Display,serif'; ctx.fillStyle='#c0365a';
+    ctx.fillText('Quase! Mas não desiste de mim 💪',FW/2,FH/2-14);
+    ctx.font='11px Nunito,sans-serif'; ctx.fillStyle='#a06070';
+    ctx.fillText('Toque para tentar de novo',FW/2,FH/2+10);
+    document.getElementById('flappy-msg').textContent='Toque para tentar novamente!';
+    fOver=true;
+  }
+}
+
+/* ═══════════════════════════════════
+   TELA FINAL
+═══════════════════════════════════ */
 function celebrate(){
-  const emojis=['❤️','💕','🌹','✨','💖','🌸','💗','🌷','💝','🥰'];
-  for(let i=0;i<40;i++){
+  const emojis=['❤️','💕','🌼','✨','💖','🌸','💗','🌷','💝','🥰','🌺'];
+  for(let i=0;i<55;i++){
     const p=document.createElement('span');
+    p.setAttribute('aria-hidden','true');
     p.style.cssText=`position:fixed;left:${Math.random()*100}%;top:${-30+Math.random()*20}px;
-      font-size:${18+Math.random()*22}px;z-index:100;pointer-events:none;
-      animation:fall ${3+Math.random()*4}s linear forwards;animation-delay:${Math.random()*2}s`;
+      font-size:${16+Math.random()*22}px;z-index:100;pointer-events:none;
+      animation:fall ${3+Math.random()*4}s linear forwards;animation-delay:${Math.random()*2.5}s`;
     p.textContent=emojis[Math.floor(Math.random()*emojis.length)];
     document.body.appendChild(p);
-    setTimeout(()=>p.remove(),(7+Math.random()*4)*1000);
+    setTimeout(()=>p.remove(),(8+Math.random()*4)*1000);
   }
 }
 </script>
