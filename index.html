@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 Meses ❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap');
+
+  :root {
+    --rose: #e8527a;
+    --rose-light: #f7a8be;
+    --rose-dark: #c0365a;
+    --cream: #fff5f7;
+    --gold: #d4a057;
+    --deep: #2a1020;
+    --soft: #f9e8ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  /* ── PARTÍCULAS ── */
+  #particles {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    font-size: 18px;
+    animation: fall linear infinite;
+    opacity: 0.6;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-40px) rotate(0deg); opacity: .7; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── TELA ── */
+  .screen {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    z-index: 10;
+    transition: opacity .5s, transform .5s;
+  }
+  .screen.hidden { opacity: 0; pointer-events: none; transform: scale(.95); }
+
+  /* ── CARD ── */
+  .card {
+    background: white;
+    border-radius: 28px;
+    padding: 40px 36px;
+    max-width: 480px; width: 100%;
+    box-shadow: 0 8px 48px rgba(232,82,122,.18), 0 2px 12px rgba(0,0,0,.06);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--rose-light), var(--rose), var(--rose-dark));
+  }
+
+  /* ── PROGRESSO ── */
+  .progress-bar {
+    width: 100%; height: 8px;
+    background: #f0d8df;
+    border-radius: 99px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose-light), var(--rose));
+    border-radius: 99px;
+    transition: width .6s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--deep);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--rose-dark);
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: #a06070;
+    font-size: .95rem;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .emoji-big { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+
+  /* ── BOTÃO PRINCIPAL ── */
+  .btn {
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    color: white;
+    border: none;
+    border-radius: 99px;
+    padding: 14px 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(232,82,122,.4);
+    transition: transform .15s, box-shadow .15s;
+    letter-spacing: .5px;
+  }
+  .btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(232,82,122,.5); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-outline {
+    background: white;
+    color: var(--rose-dark);
+    border: 2px solid var(--rose-light);
+    margin-left: 10px;
+    box-shadow: none;
+  }
+  .btn-outline:hover { background: var(--soft); box-shadow: none; }
+
+  /* ── BADGE DE FASE ── */
+  .phase-badge {
+    display: inline-block;
+    background: var(--soft);
+    color: var(--rose-dark);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 18px;
+    border: 1.5px solid var(--rose-light);
+  }
+
+  /* ── FASE 1: QUIZ ── */
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+  .quiz-opt {
+    background: var(--soft);
+    border: 2px solid var(--rose-light);
+    border-radius: 14px;
+    padding: 14px 10px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: .93rem;
+    font-weight: 600;
+    color: var(--deep);
+    transition: all .2s;
+    line-height: 1.3;
+  }
+  .quiz-opt:hover  { border-color: var(--rose); background: #ffe8ef; transform: translateY(-2px); }
+  .quiz-opt.correct { border-color: #5cb85c; background: #eaffea; color: #2d6a2d; animation: pop .3s; }
+  .quiz-opt.wrong   { border-color: #e74c3c; background: #fff0f0; color: #a33; animation: shake .3s; }
+  @keyframes pop   { 0%,100%{transform:scale(1)} 50%{transform:scale(1.07)} }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+  .feedback {
+    font-size: .9rem; font-weight: 600;
+    min-height: 22px; margin: 6px 0 14px;
+    transition: opacity .3s;
+  }
+  .feedback.ok  { color: #3a9e3a; }
+  .feedback.err { color: #c0392b; }
+
+  /* ── FASE 2: LABIRINTO ── */
+  #maze-wrap {
+    position: relative;
+    margin: 16px auto;
+  }
+  #maze-canvas {
+    border-radius: 12px;
+    border: 2px solid var(--rose-light);
+    display: block;
+    touch-action: none;
+  }
+  .maze-hint { font-size: .82rem; color: #b08090; margin-top: 8px; }
+
+  /* ── FASE 3: MEMÓRIA ── */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 16px auto;
+    max-width: 340px;
+  }
+  .mem-card {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.7rem;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--rose-light);
+    background: var(--soft);
+    transition: transform .2s;
+    user-select: none;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+  .mem-card .front, .mem-card .back {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    backface-visibility: hidden;
+  }
+  .mem-card .front { background: linear-gradient(135deg, var(--rose-light), var(--rose)); }
+  .mem-card .back  { background: var(--soft); transform: rotateY(180deg); }
+  .mem-card { transition: transform .4s; }
+  .mem-card.flipped { transform: rotateY(180deg); }
+  .mem-card.matched .back { background: #eaffea; border: 2px solid #5cb85c; }
+  #mem-status { font-size: .88rem; color: #a06070; margin-top: 8px; }
+
+  /* ── FASE 4: DIGITAÇÃO ── */
+  #type-target {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep);
+    background: var(--soft);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    line-height: 1.8;
+    letter-spacing: .3px;
+    min-height: 60px;
+  }
+  #type-target .done  { color: var(--rose-dark); font-weight: 700; }
+  #type-target .wrong-char { color: #e74c3c; background: #ffe8e8; border-radius: 3px; }
+  #type-input {
+    width: 100%;
+    border: 2px solid var(--rose-light);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    color: var(--deep);
+    transition: border .2s;
+    background: white;
+  }
+  #type-input:focus { border-color: var(--rose); }
+  #type-prog { font-size: .82rem; color: #b08090; margin-top: 6px; }
+
+  /* ── TELA FINAL ── */
+  #final .card {
+    background: linear-gradient(160deg, #fff0f4 0%, #fff8fa 100%);
+  }
+  .heart-burst {
+    font-size: 4rem;
+    animation: heartbeat 1.2s ease-in-out infinite;
+    display: block;
+    margin-bottom: 12px;
+  }
+  @keyframes heartbeat {
+    0%,100%{transform:scale(1)} 14%{transform:scale(1.18)} 28%{transform:scale(1)} 42%{transform:scale(1.1)} 70%{transform:scale(1)}
+  }
+  .final-msg {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    color: var(--deep);
+    line-height: 1.5;
+    margin: 12px 0 20px;
+  }
+  .final-sub {
+    font-size: 1rem;
+    color: #8a4060;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .counter-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 8px 24px;
+    border-radius: 99px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(232,82,122,.35);
+  }
+  .signature {
+    margin-top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--rose-dark);
+    font-size: 1.05rem;
+  }
+
+  /* ── MODAL ── */
+  #overlay {
+    position: fixed; inset: 0;
+    background: rgba(42,16,32,.45);
+    z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  #overlay.show { opacity: 1; pointer-events: all; }
+  #modal {
+    background: white;
+    border-radius: 24px;
+    padding: 32px 28px;
+    max-width: 340px; width: 90%;
+    text-align: center;
+    box-shadow: 0 16px 64px rgba(0,0,0,.18);
+    transform: scale(.9);
+    transition: transform .3s;
+  }
+  #overlay.show #modal { transform: scale(1); }
+  #modal h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--deep); margin-bottom:10px; }
+  #modal p  { color:#906070; font-size:.9rem; line-height:1.6; margin-bottom:20px; }
+</style>
+</head>
+<body>
+
+<!-- Partículas -->
+<div id="particles"></div>
+
+<!-- Modal de parabéns de fase -->
+<div id="overlay">
+  <div id="modal">
+    <span style="font-size:2.5rem">🌸</span>
+    <h3 id="modal-title">Fase concluída!</h3>
+    <p id="modal-body">Você arrasou nessa fase!</p>
+    <button class="btn" onclick="closeModal()">Próxima fase →</button>
+  </div>
+</div>
+
+<!-- ══ TELA 0: INTRO ══ -->
+<div class="screen" id="s0">
+  <div class="card">
+    <span class="emoji-big">💌</span>
+    <h1>Surpresa especial</h1>
+    <p class="subtitle" style="margin-top:10px">
+      Um joguinho criado com muito carinho para você.<br>
+      Complete todas as fases para descobrir a mensagem secreta 💕
+    </p>
+    <button class="btn" onclick="goTo('s1')">Começar ✨</button>
+  </div>
+</div>
+
+<!-- ══ TELA 1: QUIZ ══ -->
+<div class="screen hidden" id="s1">
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" id="pb1" style="width:25%"></div></div>
+    <div class="phase-badge">Fase 1 de 4 · Quiz</div>
+    <h2>Você me conhece bem? 🤔</h2>
+    <p class="subtitle" id="q-text"></p>
+    <div class="quiz-options" id="q-opts"></div>
+    <div class="feedback" id="q-feedback"></div>
+    <button class="btn hidden" id="q-next" onclick="nextQuestion()">Próxima pergunta →</button>
+  </div>
+</div>
+
+<!-- ══ TELA 2: LABIRINTO ══ -->
+<div class="screen hidden" id="s2">
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" id="pb2" style="width:50%"></div></div>
+    <div class="phase-badge">Fase 2 de 4 · Labirinto</div>
+    <h2>Encontre o coração! 💘</h2>
+    <p class="subtitle">Use as setas do teclado ou deslize na tela para guiar o ❤️ até o 🏆</p>
+    <div id="maze-wrap">
+      <canvas id="maze-canvas"></canvas>
+    </div>
+    <p class="maze-hint">💡 Dica: encontre o caminho sem bater nas paredes!</p>
+  </div>
+</div>
+
+<!-- ══ TELA 3: MEMÓRIA ══ -->
+<div class="screen hidden" id="s3">
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" id="pb3" style="width:75%"></div></div>
+    <div class="phase-badge">Fase 3 de 4 · Memória</div>
+    <h2>Jogo da Memória 🧠</h2>
+    <p class="subtitle">Encontre todos os pares de cartas!</p>
+    <div class="memory-grid" id="mem-grid"></div>
+    <p id="mem-status">Tentativas: 0 | Pares: 0/6</p>
+  </div>
+</div>
+
+<!-- ══ TELA 4: DIGITAÇÃO ══ -->
+<div class="screen hidden" id="s4">
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" id="pb4" style="width:90%"></div></div>
+    <div class="phase-badge">Fase 4 de 4 · Completar</div>
+    <h2>Complete a frase ✍️</h2>
+    <p class="subtitle">Digite exatamente o texto abaixo para liberar a mensagem especial!</p>
+    <div id="type-target"></div>
+    <input id="type-input" type="text" placeholder="Comece a digitar aqui..." autocomplete="off" oninput="checkTyping()">
+    <p id="type-prog">0%</p>
+  </div>
+</div>
+
+<!-- ══ TELA FINAL ══ -->
+<div class="screen hidden" id="final">
+  <div class="card" id="final-card">
+    <span class="heart-burst">❤️</span>
+    <div class="counter-badge">3 meses juntos 🌹</div>
+    <p class="final-msg">
+      Você conseguiu! E assim como venceu esse joguinho,<br>
+      você ganhou o meu coração.
+    </p>
+    <p class="final-sub">
+      Esses três meses com você foram os mais especiais da minha vida.
+      Cada momento, cada risada, cada abraço… tudo ficou guardado
+      aqui dentro do meu peito como um tesouro que eu nunca quero perder.
+      <br><br>
+      Obrigado por existir, por me escolher e por fazer cada dia valer mais.
+      Que venham muitos outros meses — e anos — assim, ao seu lado. 💕
+    </p>
+    <button class="btn" onclick="celebrate()">Eu te amo! 💖</button>
+    <p class="signature">— Sempre seu(a) ✨</p>
+  </div>
+</div>
+
+<script>
+/* ── PARTÍCULAS ── */
+const PETALS = ['🌸','💕','✨','💗','🌹','💖','🌷','💝'];
+const pc = document.getElementById('particles');
+for(let i=0;i<22;i++){
+  const p=document.createElement('span');
+  p.className='petal';
+  p.textContent=PETALS[Math.floor(Math.random()*PETALS.length)];
+  p.style.cssText=`left:${Math.random()*100}%;font-size:${12+Math.random()*16}px;
+    animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*8}s;`;
+  pc.appendChild(p);
+}
+
+/* ── NAVEGAÇÃO ── */
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  if(id==='s1') startQuiz();
+  if(id==='s2') initMaze();
+  if(id==='s3') initMemory();
+  if(id==='s4') initTyping();
+}
+
+/* ── MODAL ── */
+let modalCb=null;
+function showModal(title,body,cb){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-body').textContent=body;
+  document.getElementById('overlay').classList.add('show');
+  modalCb=cb;
+}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('show');
+  if(modalCb) modalCb();
+  modalCb=null;
+}
+
+/* ══ FASE 1: QUIZ ══ */
+const questions=[
+  { q:'Qual é a sua cor favorita?', opts:['Azul','Rosa','Verde','Amarelo'], ans:1 },
+  { q:'Em que mês nos conhecemos?', opts:['Janeiro','Fevereiro','Março','Outro mês'], ans:3 },
+  { q:'O que você mais gosta em nós dois?', opts:['As risadas','Os abraços','A cumplicidade','Tudo isso!'], ans:3 },
+  { q:'Qual emoji representa nosso amor?', opts:['🔥','❤️','💫','💕'], ans:1 },
+];
+let qIdx=0, qRight=0;
+function startQuiz(){ qIdx=0; qRight=0; renderQ(); }
+function renderQ(){
+  const q=questions[qIdx];
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('q-feedback').textContent='';
+  document.getElementById('q-feedback').className='feedback';
+  const next=document.getElementById('q-next');
+  next.classList.add('hidden');
+  const grid=document.getElementById('q-opts');
+  grid.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='quiz-opt'; b.textContent=o;
+    b.onclick=()=>answerQ(i);
+    grid.appendChild(b);
+  });
+}
+function answerQ(i){
+  const q=questions[qIdx];
+  const btns=document.querySelectorAll('.quiz-opt');
+  const fb=document.getElementById('q-feedback');
+  btns.forEach(b=>b.onclick=null);
+  if(i===q.ans){
+    btns[i].classList.add('correct');
+    fb.textContent='✅ Que fofa, acertou!'; fb.className='feedback ok';
+    qRight++;
+  } else {
+    btns[i].classList.add('wrong');
+    btns[q.ans].classList.add('correct');
+    fb.textContent='❌ Quase! A resposta era outra…'; fb.className='feedback err';
+  }
+  document.getElementById('q-next').classList.remove('hidden');
+}
+function nextQuestion(){
+  qIdx++;
+  if(qIdx<questions.length){ renderQ(); return; }
+  showModal('Quiz concluído! 🎉',
+    `Você acertou ${qRight} de ${questions.length} perguntas. Incrível! 💕`,
+    ()=>goTo('s2'));
+}
+
+/* ══ FASE 2: LABIRINTO ══ */
+const CELL=32, COLS=11, ROWS=11;
+let maze,px,py,mazeWon=false;
+let touchStart={x:0,y:0};
+
+function initMaze(){
+  mazeWon=false;
+  const size=Math.min(320, window.innerWidth-80);
+  const c=document.getElementById('maze-canvas');
+  c.width=c.height=size;
+  const cs=size/COLS;
+  maze=generateMaze(COLS,ROWS);
+  px=0; py=0;
+  drawMaze(c,cs);
+  document.onkeydown=mazeKey;
+  c.ontouchstart=e=>{
+    touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};
+    e.preventDefault();
+  };
+  c.ontouchend=e=>{
+    const dx=e.changedTouches[0].clientX-touchStart.x;
+    const dy=e.changedTouches[0].clientY-touchStart.y;
+    if(Math.abs(dx)>Math.abs(dy)){ mazeMove(dx>0?'right':'left'); }
+    else { mazeMove(dy>0?'down':'up'); }
+  };
+}
+
+function generateMaze(w,h){
+  const g=[];
+  for(let y=0;y<h;y++){ g[y]=[]; for(let x=0;x<w;x++) g[y][x]={r:true,b:true}; }
+  const vis=[];
+  for(let y=0;y<h;y++){vis[y]=[]; for(let x=0;x<w;x++) vis[y][x]=false;}
+  function carve(x,y){
+    vis[y][x]=true;
+    const dirs=[[0,-1,'top'],[1,0,'right'],[0,1,'bottom'],[-1,0,'left']].sort(()=>Math.random()-.5);
+    for(const [dx,dy,d] of dirs){
+      const nx=x+dx,ny=y+dy;
+      if(nx>=0&&ny>=0&&nx<w&&ny<h&&!vis[ny][nx]){
+        if(d==='right') g[y][x].r=false;
+        else if(d==='bottom') g[y][x].b=false;
+        else if(d==='left') g[y][nx].r=false;
+        else if(d==='top') g[ny][x].b=false;
+        carve(nx,ny);
+      }
+    }
+  }
+  carve(0,0);
+  return g;
+}
+
+function drawMaze(c,cs){
+  const ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.strokeStyle='#e8527a'; ctx.lineWidth=2.5;
+  ctx.fillStyle='#fff5f7';
+  ctx.fillRect(0,0,c.width,c.height);
+  for(let y=0;y<ROWS;y++){
+    for(let x=0;x<COLS;x++){
+      const cx=x*cs,cy=y*cs;
+      if(x===0){ ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+cs);ctx.stroke(); }
+      if(y===0){ ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+cs,cy);ctx.stroke(); }
+      if(maze[y][x].r&&!(x===COLS-1&&y===ROWS-1)){
+        ctx.beginPath();ctx.moveTo(cx+cs,cy);ctx.lineTo(cx+cs,cy+cs);ctx.stroke();
+      }
+      if(maze[y][x].b&&!(x===COLS-1&&y===ROWS-1)){
+        ctx.beginPath();ctx.moveTo(cx,cy+cs);ctx.lineTo(cx+cs,cy+cs);ctx.stroke();
+      }
+    }
+  }
+  // Goal
+  ctx.font=`${cs*.7}px serif`;
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('🏆',(COLS-.5)*cs,(ROWS-.5)*cs);
+  // Player
+  ctx.fillText('❤️',(px+.5)*cs,(py+.5)*cs);
+}
+
+function mazeKey(e){
+  const map={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'};
+  if(map[e.key]){e.preventDefault();mazeMove(map[e.key]);}
+}
+
+function mazeMove(dir){
+  if(mazeWon) return;
+  const c=document.getElementById('maze-canvas');
+  const cs=c.width/COLS;
+  let nx=px,ny=py;
+  if(dir==='up'){ny--;}
+  else if(dir==='down'){ny++;}
+  else if(dir==='left'){nx--;}
+  else if(dir==='right'){nx++;}
+  if(nx<0||ny<0||nx>=COLS||ny>=ROWS) return;
+  // wall check
+  if(dir==='right'&&maze[py][px].r) return;
+  if(dir==='down' &&maze[py][px].b) return;
+  if(dir==='left' &&maze[py][nx].r) return;
+  if(dir==='up'   &&maze[ny][px].b) return;
+  px=nx;py=ny;
+  drawMaze(c,cs);
+  if(px===COLS-1&&py===ROWS-1){
+    mazeWon=true;
+    document.onkeydown=null;
+    setTimeout(()=>showModal('Labirinto concluído! 🗺️',
+      'Você encontrou o coração! Assim como encontrou o meu 💕',
+      ()=>goTo('s3')),400);
+  }
+}
+
+/* ══ FASE 3: MEMÓRIA ══ */
+const MEM_EMOJIS=['❤️','🌹','💌','💕','✨','🌸'];
+let memCards=[],memFlipped=[],memMatched=0,memTries=0,memLock=false;
+function initMemory(){
+  memMatched=0;memTries=0;memFlipped=[];memLock=false;
+  const grid=document.getElementById('mem-grid');
+  grid.innerHTML='';
+  const pairs=[...MEM_EMOJIS,...MEM_EMOJIS].sort(()=>Math.random()-.5);
+  memCards=pairs.map((em,i)=>{
+    const d=document.createElement('div');
+    d.className='mem-card';
+    d.innerHTML=`<div class="front">❓</div><div class="back">${em}</div>`;
+    d.dataset.val=em; d.dataset.idx=i;
+    d.onclick=()=>flipCard(d);
+    grid.appendChild(d);
+    return d;
+  });
+  updateMemStatus();
+}
+function flipCard(card){
+  if(memLock||card.classList.contains('flipped')||card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  memFlipped.push(card);
+  if(memFlipped.length===2){
+    memTries++;
+    memLock=true;
+    const [a,b]=memFlipped;
+    if(a.dataset.val===b.dataset.val){
+      a.classList.add('matched'); b.classList.add('matched');
+      memMatched++;
+      memFlipped=[];memLock=false;
+      updateMemStatus();
+      if(memMatched===MEM_EMOJIS.length){
+        setTimeout(()=>showModal('Memória incrível! 🧠',
+          `Você completou em ${memTries} tentativas! Só podia ser você 💕`,
+          ()=>goTo('s4')),500);
+      }
+    } else {
+      setTimeout(()=>{
+        a.classList.remove('flipped'); b.classList.remove('flipped');
+        memFlipped=[];memLock=false;
+        updateMemStatus();
+      },900);
+    }
+  }
+}
+function updateMemStatus(){
+  document.getElementById('mem-status').textContent=
+    `Tentativas: ${memTries} | Pares: ${memMatched}/${MEM_EMOJIS.length}`;
+}
+
+/* ══ FASE 4: DIGITAÇÃO ══ */
+const TYPE_PHRASE='Três meses com você e eu só quero mais 💕';
+function initTyping(){
+  document.getElementById('type-input').value='';
+  renderTyping('');
+}
+function checkTyping(){
+  const val=document.getElementById('type-input').value;
+  renderTyping(val);
+  if(val===TYPE_PHRASE){
+    document.getElementById('type-input').disabled=true;
+    setTimeout(()=>goTo('final'),600);
+  }
+}
+function renderTyping(typed){
+  const target=document.getElementById('type-target');
+  let html='';
+  for(let i=0;i<TYPE_PHRASE.length;i++){
+    if(i<typed.length){
+      if(typed[i]===TYPE_PHRASE[i]) html+=`<span class="done">${esc(TYPE_PHRASE[i])}</span>`;
+      else html+=`<span class="wrong-char">${esc(TYPE_PHRASE[i])}</span>`;
+    } else {
+      html+=`<span style="color:#ccc">${esc(TYPE_PHRASE[i])}</span>`;
+    }
+  }
+  target.innerHTML=html;
+  const pct=Math.round(Math.min(typed.length,TYPE_PHRASE.length)/TYPE_PHRASE.length*100);
+  document.getElementById('type-prog').textContent=`${pct}% completo`;
+}
+function esc(c){ return c==='<'?'&lt;':c==='>'?'&gt;':c==='&'?'&amp;':c===' '?'&nbsp;':c; }
+
+/* ══ TELA FINAL ══ */
+function celebrate(){
+  const emojis=['❤️','💕','🌹','✨','💖','🌸','💗','🌷','💝','🥰'];
+  for(let i=0;i<40;i++){
+    const p=document.createElement('span');
+    p.style.cssText=`position:fixed;left:${Math.random()*100}%;top:${-30+Math.random()*20}px;
+      font-size:${18+Math.random()*22}px;z-index:100;pointer-events:none;
+      animation:fall ${3+Math.random()*4}s linear forwards;animation-delay:${Math.random()*2}s`;
+    p.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),(7+Math.random()*4)*1000);
+  }
+}
+</script>
+</body>
+</html>
